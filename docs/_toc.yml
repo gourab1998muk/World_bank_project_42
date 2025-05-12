@@ -6,7 +6,8 @@ parts:
     numbered: True
     chapters:
       - file: notebooks/world-bank-api.ipynb
-      - file: notebooks/world-bank-package.ipynb
+      # - file: notebooks/world-bank-package.ipynb
+      - file: notebooks/world_bank_modelling.ipynb
       - file: notebooks/nasa-apod.ipynb
       - file: notebooks/bibliography.ipynb
   - caption: Recommended Workflows
