@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from sklearn.preprocessing import StandardScaler, MinMaxScaler, LabelEncoder
 import os
-print("update with get data path : done")
+print("update with save data path : ")
 def get_data_path(filename):
     # Get absolute path to the `data` directory relative to this script
     base_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', 'data'))
@@ -154,18 +154,30 @@ def handle_outliers(df, method='iqr', threshold=1.5):
 # Step 8: Save the processed dataset
 def save_data(df, file_name):
     """
-    Saves the processed dataset to a CSV file.
+    Saves the processed dataset to the 'data' directory as a CSV file.
 
     Parameters:
-        df (DataFrame): The dataset.
-        file_name (str): Name of the output CSV file.
+        df (DataFrame): The dataset to save.
+        file_name (str): The CSV file name (e.g., 'my_file.csv').
 
     Returns:
         None
     """
-    df.to_csv(file_name, index=False)
-    print(f"Processed dataset saved as {file_name}")
+    # Get the current working directory (works for notebooks too)
+    main_dir = os.path.dirname(os.path.abspath(os.getcwd()))
 
+    # Define the 'data/' directory path
+    data_dir = os.path.join(main_dir, 'data')
+    os.makedirs(data_dir, exist_ok=True)
+
+    # Full path for the output file
+    full_path = os.path.join(data_dir, file_name)
+
+    # Save the DataFrame
+    df.to_csv(full_path, index=False)
+    print(f"✅ Saved: {full_path}")
+    
+    
 # Sample Pipeline Execution
 if __name__ == "__main__":
     # Load the dataset
